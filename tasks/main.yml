@@ -10,20 +10,34 @@
     - locales
     - python-psycopg2
     - python-pycurl
-  sudo: True
   tags: postgresql
 
 - name: Add PostgreSQL repository apt-key
+  apt_key:
+    id: "{{ postgresql_apt_key_id }}"
+    url: "{{ postgresql_apt_key_url }}"
+    state: present
   tags: postgresql
 
 - name: Add PostgreSQL repository
+  apt_repository:
+    repo: "{{ postgresql_apt_repository }}"
+    state: present
   tags: postgresql
 
 - name: Add PostgreSQL repository preferences
+  copy:
+    src: postgresql.apt.pref
+    dest: "{{ postgresql_apt_preferences_path }}"
   tags: postgresql
 
 - name: Install PostgreSQL
-  tags: postgresql
-
-- name: Run pgtune
+  apt:
+    name: "{{ item }}"
+    state: latest
+  environment: "{{ postgresql_env }}"
+  with_items:
+    - "postgresql-{{ postgresql_version }}"
+    - "postgresql-client-{{ postgresql_version }}"
+    - "postgresql-contrib-{{ postgresql_version }}"
   tags: postgresql
