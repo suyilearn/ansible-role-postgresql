@@ -1,0 +1,29 @@
+---
+- name: Install dependencies
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ca-certificates
+    - postgresql
+    - postgresql-client
+    - postgresql-client-common
+    - libpq-dev
+    - locales
+    - python-psycopg2
+    - python-pycurl
+  sudo: True
+  tags: postgresql
+
+- name: Add PostgreSQL repository apt-key
+  tags: postgresql
+
+- name: Add PostgreSQL repository
+  tags: postgresql
+
+- name: Add PostgreSQL repository preferences
+  tags: postgresql
+
+- name: Install PostgreSQL
+  tags: postgresql
+
+- name: Run pgtune
+  tags: postgresql
