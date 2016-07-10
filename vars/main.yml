@@ -4,7 +4,7 @@ postgresql_admin: postgres
 postgresql_apt_key_id: ACCC4CF8
 postgresql_apt_key_url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
 postgresql_apt_preferences_path: "/etc/apt/preferences.d/"
-postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ansible_distribution_release}}-pgdg main {{postgresql_version}}'
+postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ansible_distribution_release}}-pgdg main {{ postgresql_version }}'
 
 postgresql_authentication_timeout: 60s
 
@@ -22,6 +22,8 @@ postgresql_encoding: 'UTF-8'
 postgresql_env:
   LC_ALL: "{{ postgresql_locale }}"
   LC_LCTYPE: "{{ postgresql_locale }}"
+
+postgresql_ext_postgis_version: 2.2 # check for compatibility
 
 postgresql_external_pid_file: "{{ postgresql_pid_path }}/{{ postgresql_version }}-{{ postgresql_cluster_name }}.pid"
 
@@ -59,3 +61,5 @@ postgresql_superuser_reserved_connections: 3
 
 postgresql_unix_socket_directories:
   - "{{ postgresql_pid_path }}"
+
+postgresql_version: 9.5

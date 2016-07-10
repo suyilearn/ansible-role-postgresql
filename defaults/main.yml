@@ -1,4 +1,2 @@
 ---
-postgresql_version: 9.4
-
-postgresql_ext_postgis_version: "2.2" # check for compatibility
+# defaults
