@@ -1,5 +1,5 @@
 ---
-postgresql_admin: postgres
+postgresql_admin_user: postgres
 
 postgresql_apt_key_id: ACCC4CF8
 postgresql_apt_key_url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
@@ -53,9 +53,9 @@ postgresql_pid_path: "/var/run/postgresql"
 
 postgresql_port: 5432
 
-postgresql_service_group: "{{ postgresql_admin }}"
+postgresql_service_group: "{{ postgresql_admin_user }}"
 postgresql_service_name: postgresql
-postgresql_service_user: "{{ postgresql_admin }}"
+postgresql_service_user: "{{ postgresql_admin_user }}"
 
 postgresql_superuser_reserved_connections: 3
 
