@@ -41,3 +41,7 @@
     - "postgresql-client-{{ postgresql_version }}"
     - "postgresql-contrib-{{ postgresql_version }}"
   tags: postgresql
+
+- name: Install extensions
+  include: extensions.yml
+  tags: postgresql

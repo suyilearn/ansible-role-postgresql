@@ -1,0 +1,6 @@
+- name: Install contrib packages
+  apt:
+    name: "postgresql-contrib-{{ postgresql_version }}"
+    state: latest
+  notify:
+    - restart postgresql
