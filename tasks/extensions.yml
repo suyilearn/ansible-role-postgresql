@@ -1,6 +1,12 @@
-- name: Install contrib packages
+---
+- name: Install PostGIS
   apt:
-    name: "postgresql-contrib-{{ postgresql_version }}"
+    name: "{{ item }}"
     state: latest
+  with_items:
+    - libgeos-c1
+    - "postgresql-{{ postgresql_version }}-postgis-{{ postgresql_ext_postgis_version }}"
+    - "postgresql-{{ postgresql_version }}-postgis-{{ postgresql_ext_postgis_version }}-scripts"
   notify:
     - restart postgresql
+  tags: postgresql
