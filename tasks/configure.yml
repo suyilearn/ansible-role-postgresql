@@ -1,0 +1,85 @@
+---
+- name: Setup data directory
+  file:
+    path: "{{ postgresql_data_path }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    state: directory
+    mode: 0700
+  register: postgresql_data_path_exists
+  tags: postgresql
+
+- name: Generate locale
+  locale_gen: name="{{ postgresql_locale }}" state=present
+  tags: postgresql
+
+- name: Drop the cluster
+  shell: pg_dropcluster --stop {{ postgresql_version }} {{ postgresql_cluster_name }}
+  tags: postgresql
+
+- name: Create a new cluster
+  shell: |
+    pg_createcluster --start --locale {{ postgresql_locale }}
+    -e {{ postgresql_encoding }} -d {{ postgresql_data_path }}
+    {{ postgresql_version }} {{ postgresql_cluster_name }}
+  tags: postgresql
+
+- name: Setup configuration directory
+  file:
+    path: "{{ postgresql_conf_path }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0750
+    state: directory
+  tags: postgresql
+
+- name: Setup pg_hba.conf
+  template:
+    src: pg_hba.conf
+    dest: "{{ postgresql_hba_file }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0640
+  tags: postgresql
+
+- name: Setup postgresql.conf
+  template:
+    src: postgresql.conf-{{ postgresql_version }}
+    dest: "{{ postgresql_conf_file }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0640
+  tags: postgresql
+
+- name: Create folder for additional configuration files
+  file:
+    path: "{{ postgresql_conf_path }}/conf.d"
+    state: directory
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0750
+  tags: postgresql
+
+- name: Setup log directory
+  file:
+    path: "{{ postgresql_log_path }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0750
+    state: directory
+  tags: postgresql
+
+- name: Setup pid directory
+  file:
+    path: "{{ postgresql_pid_path }}"
+    owner: "{{ postgresql_service_user }}"
+    group: "{{ postgresql_service_group }}"
+    mode: 0750
+    state: directory
+  tags: postgresql
+
+- name: Restart postgresql
+  service:
+    name: "{{ postgresql_service_name }}"
+    state: restarted
+  tags: postgresql

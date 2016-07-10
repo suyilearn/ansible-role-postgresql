@@ -45,3 +45,7 @@
 - name: Install extensions
   include: extensions.yml
   tags: postgresql
+
+- name: Configure
+  include: configure.yml
+  tags: postgresql
