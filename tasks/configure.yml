@@ -17,6 +17,7 @@
   shell: pg_dropcluster --stop {{ postgresql_version }} {{ postgresql_cluster_name }}
   become: True
   become_user: "{{ postgresql_service_user }}"
+  when: postgresql_data_path_exists.changed
   tags: postgresql
 
 - name: Create a new cluster
@@ -26,6 +27,7 @@
     {{ postgresql_version }} {{ postgresql_cluster_name }}
   become: True
   become_user: "{{ postgresql_service_user }}"
+  when: postgresql_data_path_exists.changed
   tags: postgresql
 
 - name: Setup configuration directory
