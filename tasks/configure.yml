@@ -18,6 +18,7 @@
   become: True
   become_user: "{{ postgresql_service_user }}"
   when: postgresql_data_path_exists.changed
+  ignore_errors: True
   tags: postgresql
 
 - name: Create a new cluster
