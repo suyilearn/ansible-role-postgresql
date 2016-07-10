@@ -15,6 +15,8 @@
 
 - name: Drop the cluster
   shell: pg_dropcluster --stop {{ postgresql_version }} {{ postgresql_cluster_name }}
+  become: True
+  become_user: "{{ postgresql_service_user }}"
   tags: postgresql
 
 - name: Create a new cluster
@@ -22,6 +24,8 @@
     pg_createcluster --start --locale {{ postgresql_locale }}
     -e {{ postgresql_encoding }} -d {{ postgresql_data_path }}
     {{ postgresql_version }} {{ postgresql_cluster_name }}
+  become: True
+  become_user: "{{ postgresql_service_user }}"
   tags: postgresql
 
 - name: Setup configuration directory
