@@ -1,0 +1,12 @@
+- name: Create PostgreSQL users
+  postgresql_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    encrypted: "{{ item.encrypted }}"
+    port: "{{ postgresql_port }}"
+    state: present
+    login_user: "{{ postgresql_admin_user }}"
+  become: True
+  become_user: "{{ postgresql_admin_user }}"
+  with_items: postgresql_users
+  when: postgresql_users|length > 0

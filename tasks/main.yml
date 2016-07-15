@@ -49,3 +49,7 @@
 - name: Configure
   include: configure.yml
   tags: postgresql
+
+- name: Users
+  include: users.yml
+  tags: postgresql
