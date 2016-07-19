@@ -6,6 +6,7 @@
     state: present
     login_host: "{{ item.host | default(omit) }}"
     login_user: "{{ postgresql_admin_user }}"
+    priv: "ALL"
     role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
   become: True
   become_user: "{{ postgresql_admin_user }}"
