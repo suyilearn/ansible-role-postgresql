@@ -36,4 +36,4 @@ script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   # Run the playbook
-  - ansible-playbook tests/test.yml -i tests/inventory --connection=local --become --become-user=root
+  - ansible-playbook tests/test.yml -i tests/inventory --connection=local --become --become-user=root -e "postgresql_version=9.1"
