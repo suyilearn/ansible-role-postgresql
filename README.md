@@ -12,6 +12,15 @@ None.
 
 `postgresql_version` (defaults to `9.5.3`)
 
+## Users
+
+```
+psotgresql_users:
+  - tito
+  - vic
+  - joey
+```
+
 ## Databases
 
 ```

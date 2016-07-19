@@ -1,8 +1,8 @@
 - name: Create PostgreSQL users
   postgresql_user:
     name: "{{ item.name }}"
-    password: "{{ item.password }}"
-    encrypted: "{{ item.encrypted }}"
+    password: "{{ item.password | default(omit) }}"
+    encrypted: "{{ item.encrypted | default(omit) }}"
     port: "{{ postgresql_port }}"
     state: present
     login_user: "{{ postgresql_admin_user }}"
