@@ -1,6 +1,9 @@
 ---
 postgresql_database_extensions: []
 postgresql_databases: []
+postgresql_pg_hba_trust_hosts:
+  - '127.0.0.1/32'
+  - '::1/128'
 postgresql_user_privileges: []
 postgresql_users: []
 postgresql_version: 9.5
