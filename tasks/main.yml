@@ -57,3 +57,7 @@
 - name: Add databases
   include: databases.yml
   tags: postgresql
+
+- name: Set users privileges
+  include: users_privileges.yml
+  tags: postgresql
