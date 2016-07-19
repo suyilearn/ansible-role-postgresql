@@ -15,29 +15,17 @@ None.
 ## Users
 
 ```
-psotgresql_users:
-  - tito
-  - vic
-  - joey
+postgresql_users:
+  - ngpestelos
 ```
 
 ## Databases
 
 ```
 postgresql_databases:
-  - foo
-  - bar
-  - baz
-```
-
-## Extensions to be created for each database (optional)
-
-```
-postgresql_database_extensions:
-  - db: foobar
-    extensions:
-      - hstore
-      - citext
+  - name: ngpestelos
+    owner: ngpestelos
+  - hstore: yes
 ```
 
 # Dependencies
