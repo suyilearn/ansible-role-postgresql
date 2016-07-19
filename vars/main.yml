@@ -61,5 +61,3 @@ postgresql_superuser_reserved_connections: 3
 
 postgresql_unix_socket_directories:
   - "{{ postgresql_pid_path }}"
-
-postgresql_version: 9.5
