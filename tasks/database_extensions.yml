@@ -3,6 +3,7 @@
   become: True
   become_user: "{{ postgresql_admin_user }}"
   with_subelements:
-    - postgresql_database_extensions
+    - "{{ postgresql_database_extensions }}"
   register: result
   changed_when: "'NOTICE' not in result.stderr"
+  when: "{{ postgresql_database_extensions }}|length > 0"
