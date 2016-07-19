@@ -10,4 +10,4 @@
   become: True
   become_user: "{{ postgresql_admin_user }}"
   with_items: "{{ postgresql_user_privileges }}"
-  when: "{{ postgresql_user_privileges }}|length > 0"
+  when: "postgresql_user_privileges|length > 0"

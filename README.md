@@ -28,6 +28,14 @@ postgresql_databases:
   - hstore: yes
 ```
 
+## Privileges
+
+```
+postgresql_user_privileges:
+  - name: ngpestelos
+    db: ngpestelos
+```
+
 # Dependencies
 
 None.
