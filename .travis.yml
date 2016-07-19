@@ -7,11 +7,9 @@ python: "2.7"
 sudo: required
 
 before_install:
-  - sudo apt-get purge pgdg-keyring '^postgresql.*' -y
   - sudo apt-get autoremove -qq -y
   - sudo rm -rf /etc/postgresql
   - sudo rm -rf /var/lib/postgresql
-  - sudo rm -f /etc/apt/sources.list.d/pgdg-sources.list
   - sudo apt-get update -qq -y
   - sudo apt-get install -qq -y python-apt python-pycurl locales
   - echo 'en_US.UTF-8 UTF-8' | sudo tee /var/lib/locales/supported.d/local
