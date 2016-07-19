@@ -1,3 +1,4 @@
 ---
+postgresql_databases: []
 postgresql_users: []
 postgresql_version: 9.5

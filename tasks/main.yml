@@ -50,6 +50,10 @@
   include: configure.yml
   tags: postgresql
 
-- name: Users
+- name: Add users
   include: users.yml
+  tags: postgresql
+
+- name: Add databases
+  include: databases.yml
   tags: postgresql
