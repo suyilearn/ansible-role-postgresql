@@ -1,4 +1,5 @@
 ---
+postgresql_database_extensions: []
 postgresql_databases: []
 postgresql_user_privileges: []
 postgresql_users: []

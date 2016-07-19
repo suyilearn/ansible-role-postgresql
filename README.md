@@ -8,7 +8,28 @@ None.
 
 # Role Variables
 
-* `postgresql_version` (defaults to `9.5.3`)
+## Basic settings
+
+`postgresql_version` (defaults to `9.5.3`)
+
+## Databases
+
+```
+postgresql_databases:
+  - foo
+  - bar
+  - baz
+```
+
+## Extensions to be created for each database (optional)
+
+```
+postgresql_database_extensions:
+  - db: foobar
+    extensions:
+      - hstore
+      - citext
+```
 
 # Dependencies
 

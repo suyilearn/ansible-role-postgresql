@@ -1,0 +1,8 @@
+- name: Add extensions
+  shell: "psql {{ item.0.db }} --username {{ postgresql_admin_user }} -c 'CREATE EXTENSION IF NOT EXISTS {{ item.1 }}"
+  become: True
+  become_user: "{{ postgresql_admin_user }}"
+  with_subelements:
+    - postgresql_database_extensions
+  register: result
+  changed_when: "'NOTICE' not in result.stderr"

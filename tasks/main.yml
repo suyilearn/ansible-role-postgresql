@@ -58,6 +58,10 @@
   include: databases.yml
   tags: postgresql
 
+- name: Add database extensions
+  include: database_extensions.yml
+  tags: postgresql
+
 - name: Set users privileges
   include: users_privileges.yml
   tags: postgresql
