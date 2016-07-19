@@ -14,6 +14,6 @@
   shell: "{{ postgresql_bin_path }}/psql {{ item.name }} --username {{ postgresql_admin_user }} -c 'CREATE EXTENSION IF NOT EXISTS pg_trgm'"
   with_items: "{{ postgresql_databases }}"
   register: pg_trgm_ext_result
-  failed_when: pg_trgm_ext_result.rc != 0 and ("already exists, skipping" not in hstore_ext_result.stderr)
-  changed_when: pg_trgm_ext_result.rc == 0 and ("already exists, skipping" not in hstore_ext_result.stderr)
+  failed_when: pg_trgm_ext_result.rc != 0 and ("already exists, skipping" not in pg_trgm_ext_result.stderr)
+  changed_when: pg_trgm_ext_result.rc == 0 and ("already exists, skipping" not in pg_trgm_ext_result.stderr)
   when: item.pg_trgm is defined and item.pg_trgm
